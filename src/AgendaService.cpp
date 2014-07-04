@@ -230,5 +230,7 @@ void AgendaService::startAgenda(void) {
 
 void AgendaService::quitAgenda(void) {
   storage_->sync();
+  // delete storage_;
+  // consider why "core dumped" occours if we delete storage_
 }
 
