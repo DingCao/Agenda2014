@@ -1,6 +1,6 @@
 objects = Agenda.o AgendaUI.o AgendaService.o Storage.o Meeting.o User.o Date.o
 files   = Agenda.cpp AgendaUI.cpp AgendaService.cpp Storage.cpp User.cpp Date.cpp Meeting.cpp
-FLAG    = -std=c++11
+FLAG    = -std=c++0x
 EXC     = Agenda
 CC      = g++
 
