@@ -48,7 +48,7 @@ bool LogList::readFromLog(const char *fpath) {
   if (!in_file.is_open()) return false;  // read fail
   
   string line;
-  string num_string, time_string, user, command, state;
+  string numb_string, time_string, user, command, state;
   std::getline(in_file, line);
   while (in_file >> num_string >> time_string >> user >> command >> state,
          !in_file.eof()) {

@@ -18,7 +18,7 @@ LogElement::LogElement(int number, Date time, string name,
   excute_state_ = state;
 }
 
-int LogElement::getNumber() { return excute_number_; }
+LogElement::int getNumber() { return excute_number_; }
 void LogElement::setNumber(const int excute_number) {
   excute_number_ = excute_number;
 }

@@ -64,9 +64,9 @@ void Date::setToCurrentTime(Date& date) {
   current_time = localtime(&s_current_time);
   date.year_ = 1900 + current_time->tm_year;
   date.month_ = 1 + current_time->tm_mon;
-  date.day_ = current_time->tm_mday;
-  date.hour_ = current_time->tm_hour;
-  date.minute_ = current_time->tm_min;
+  day_ = current_time->tm_mday;
+  hour_ = current_time->tm_hour;
+  minute_ = current_time->tm_min;
 }
 
 Date Date::stringToDate(std::string dateString) {

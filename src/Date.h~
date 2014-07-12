@@ -19,7 +19,7 @@ class Date {
   int getMinute(void) const;
   void setMinute(int minute);
   static bool isValid(Date date);
-  static void setToCurrentTime(Date& date);
+  static void setToCurrentTime();
   static Date stringToDate(std::string dateString);
   static std::string dateToString(Date date);
   Date &operator=(const Date& date);

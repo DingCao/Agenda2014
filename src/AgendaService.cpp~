@@ -45,7 +45,6 @@ bool AgendaService::userRegister(std::string userName, std::string password,
       new_log.setState("fail");
       log_->createElement(new_log);
       return false;
-    }
   }
   User newUser(userName, password, email, phone);
   storage_->createUser(newUser);
