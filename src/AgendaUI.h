@@ -3,6 +3,7 @@
 
 #include <string>
 #include "AgendaService.h"
+#include "Log.h"
 
 class AgendaUI {
  public:
@@ -32,6 +33,7 @@ class AgendaUI {
   // datas
   std::string userName_;
   std::string userPassword_;
+  LogList* log_;
   AgendaService agendaService_;
 };
 

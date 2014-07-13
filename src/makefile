@@ -9,9 +9,9 @@ $(EXC): $(objects)
 	$(CC) $(FLAG) -o $(EXC) $(objects)
 Agenda.o: Agenda.cpp AgendaUI.h
 	$(CC) $(FLAG) -c Agenda.cpp
-AgendaUI.o: AgendaUI.cpp AgendaUI.h AgendaService.h
+AgendaUI.o: AgendaUI.cpp AgendaUI.h AgendaService.h Log.h
 	$(CC) $(FLAG) -c AgendaUI.cpp
-AgendaService.o: AgendaService.cpp AgendaService.h Storage.h Log.h
+AgendaService.o: AgendaService.cpp AgendaService.h Storage.h
 	$(CC) $(FLAG) -c AgendaService.cpp
 Storage.o: Storage.cpp Storage.h User.h Meeting.h
 	$(CC) $(FLAG) -c Storage.cpp
@@ -31,5 +31,5 @@ cleanAll:
 cleanObj:
 	rm $(objects)
 gdb:
-	$(CC) $(FLAG) -o $(EXC) -g $(files)
+	$(CC) $(FLAG) -o AgendaTest -g $(files)
 

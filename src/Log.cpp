@@ -50,8 +50,8 @@ bool LogList::readFromLog(const char *fpath) {
   string line;
   string num_string, time_string, user, command, state;
   std::getline(in_file, line);
-  while (in_file >> num_string >> time_string >> user >> command >> state,
-         !in_file.eof()) {
+  while (!in_file.eof(),
+      in_file >> num_string >> time_string >> user >> command >> state) {
     int number = std::stoi(num_string);
     Date time = Date::stringToDate(time_string);
     LogElement new_element(number, time, user, command, state);
@@ -67,16 +67,17 @@ bool LogList::writeToLog(const char *fpath) {
   if (!out_file.is_open()) return false;  // write fail
 
   out_file << left << setw(14) << "excute_number" << setw(20) << "time"
-                   << setw(14) << "user"          << setw(14) << "command"
-                   << setw(8)  << "state" << endl;
+                   << setw(14) << "user"          << setw(30) << "command"
+                   << "state" << endl;
   list<LogElement>::iterator it;
   for (it = log_list_.begin(); it != log_list_.end(); it++) {
     out_file << left << setw(14) << it->getNumber()
                      << setw(20) << Date::dateToString(it->getTime())
                      << setw(14) << it->getUserName()
-                     << setw(14) << it->getCommand()
-                     << setw(8)  << it->getState() << endl;
+                     << setw(30) << it->getCommand()
+                     << it->getState() << endl;
   }
+  out_file << endl;
   return true;  // write succeed
 }
 

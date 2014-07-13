@@ -3,7 +3,6 @@
 #define AGENDA_SERVICE_H_
 
 #include "Storage.h"
-#include "Log.h"
 #include <list>
 #include <string>
 
@@ -39,7 +38,6 @@ class AgendaService {
 
  private:
   Storage* storage_;
-  LogList* log_;
 };
 
 #endif
