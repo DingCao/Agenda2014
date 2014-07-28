@@ -14,6 +14,10 @@ AgendaUI::AgendaUI() {
   log_->createElement(new_log);
 }
 
+AgendaUI::~AgendaUI() {
+  delete log_;
+}
+
 void AgendaUI::OperationLoop(void) {
   std::string op;
   while (executeOperation(op)) {

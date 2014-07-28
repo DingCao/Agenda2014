@@ -46,7 +46,7 @@ LogList::~LogList() {
 bool LogList::readFromLog(const char *fpath) {
   std::ifstream in_file(fpath);
   if (!in_file.is_open()) return false;  // read fail
-  
+
   string line;
   string num_string, time_string, user, command, state;
   std::getline(in_file, line);
@@ -85,6 +85,7 @@ bool LogList::writeToLog(const char *fpath) {
 // synchronize information to log.data
 bool LogList::sync(void) {
   writeToLog("log.data");
+  return true;
 }
 
 // function creatsElement:

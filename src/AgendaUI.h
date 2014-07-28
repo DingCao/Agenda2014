@@ -8,6 +8,7 @@
 class AgendaUI {
  public:
   AgendaUI();
+  ~AgendaUI();
   void OperationLoop(void);
 
  private:

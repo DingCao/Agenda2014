@@ -7,6 +7,7 @@ AgendaService::AgendaService() {
 
 AgendaService::~AgendaService() {
   quitAgenda();
+  delete storage_;
 }
 
 bool AgendaService::userLogIn(std::string userName, std::string password) {
