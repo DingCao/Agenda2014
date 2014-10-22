@@ -143,11 +143,15 @@ int Storage::updateUser(std::function<bool(const User&)> filter,
 int Storage::deleteUser(std::function<bool(const User&)> filter) {
   int count = 0;
   std::list<User>::iterator it;
-  for (it = userList_.begin(); it != userList_.end(); it++) {
+  for (it = userList_.begin(); it != userList_.end();) {
     if (filter(*it)) {
       it = userList_.erase(it);
       // the return  value of erase() is the iterator following the one erased.
       count++;
+    } else {
+      // for the conctrol conditional may have access to invalid address,
+      // so we need to change the control conditional.
+      it++;
     }
   }
   return count;
@@ -183,11 +187,15 @@ int Storage::updateMeeting(std::function<bool(const Meeting&)> filter,
 int Storage::deleteMeeting(std::function<bool(const Meeting&)> filter) {
   int count = 0;
   std::list<Meeting>::iterator it;
-  for (it = meetingList_.begin(); it != meetingList_.end(); it++) {
+  for (it = meetingList_.begin(); it != meetingList_.end();) {
     if (filter(*it)) {
       it = meetingList_.erase(it);
       // information seen in Storage::deleteUser()
       count++;
+    } else {
+      // for the conctrol conditional may have access to invalid address,
+      // so we need to change the control conditional.
+      it++;
     }
   }
   return count;
@@ -197,4 +205,3 @@ int Storage::deleteMeeting(std::function<bool(const Meeting&)> filter) {
 bool Storage::sync(void) {
   return writeToFile("agenda.data");
 }
-

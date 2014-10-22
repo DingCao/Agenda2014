@@ -4,6 +4,7 @@
 #include <string>
 #include <list>
 #include "AgendaUI.h"
+#include "vld.h"
 
 AgendaUI::AgendaUI() {
   startAgenda();
@@ -240,10 +241,10 @@ void AgendaUI::listAllUsers(void) {
   std::cout << "[list all users]" << std::endl;
   std::cout << std::endl;
   std::cout << std::left << std::setw(8) << "name"
-      << std::setw(16) << "email" << "phone" << std::endl;
+      << std::setw(20) << "email" << "phone" << std::endl;
   for (it = allUserList.begin(); it != allUserList.end(); it++)
     std::cout << std::left << std::setw(8) << it->getName()
-      << std::setw(16) << it->getEmail() << it->getPhone() << std::endl;
+      << std::setw(20) << it->getEmail() << it->getPhone() << std::endl;
 
   Date current;
   Date::setToCurrentTime(current);
