@@ -106,7 +106,7 @@ bool Storage::writeToFile(const char *fpath) {
 
 Storage* Storage::getInstance(void) {
   if (instance_ == NULL) {
-    instance_ = new Storage;
+    instance_ = new Storage();
   }
   return instance_;
 }

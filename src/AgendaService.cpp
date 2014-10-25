@@ -148,7 +148,7 @@ std::list<Meeting> AgendaService::meetingQuery(std::string userName,
     Date meetEDate = meeting.getEndDate();
     Date sDate = Date::stringToDate(startDate);
     Date eDate = Date::stringToDate(endDate);
-    
+
     bool isNameValid = (meeting.getSponsor() == userName ||
                         meeting.getParticipator() == userName);
     bool isStartTimeValid = meetSDate >= sDate && meetSDate < eDate;
