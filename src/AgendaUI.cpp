@@ -4,7 +4,6 @@
 #include <string>
 #include <list>
 #include "AgendaUI.h"
-#include "vld.h"
 
 AgendaUI::AgendaUI() {
   startAgenda();
