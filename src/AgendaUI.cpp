@@ -9,8 +9,8 @@ AgendaUI::AgendaUI() {
   startAgenda();
   Date current;
   Date::setToCurrentTime(current);
-  LogElement new_log(log_->getSize()+1, current, "system",
-      "start_Agenda", "succeed");
+  LogElement new_log(log_->getSize() + 1, current, "system",
+                     "start_Agenda", "succeed");
   log_->createElement(new_log);
 }
 
@@ -84,8 +84,8 @@ bool AgendaUI::executeOperation(std::string op) {
 
     Date current;
     Date::setToCurrentTime(current);
-    LogElement new_log(log_->getSize()+1, current, "system",
-        "unexcepted_command", "error");
+    LogElement new_log(log_->getSize() + 1, current, "system",
+                       "unexcepted_command", "error");
     log_->createElement(new_log);
 
     std::cout << "[error] unexcepted command!" << std::endl;
@@ -135,13 +135,13 @@ bool AgendaUI::executeOperation(std::string op) {
       deleteAllMeetings();
       return true;
     }
-    
+
     Date current;
     Date::setToCurrentTime(current);
-    LogElement new_log(log_->getSize()+1, current, "system",
-        "unexcepted_command", "error");
+    LogElement new_log(log_->getSize() + 1, current, "system",
+                       "unexcepted_command", "error");
     log_->createElement(new_log);
-    
+
     std::cout << "[error] unexcepted command!" << std::endl;
     return true;
   }
@@ -155,7 +155,7 @@ void AgendaUI::userLogIn(void) {
 
   Date current;
   Date::setToCurrentTime(current);
-  LogElement new_log(log_->getSize()+1, current, userName, "log_in");
+  LogElement new_log(log_->getSize() + 1, current, userName, "log_in");
 
   if (agendaService_.userLogIn(userName, password)) {
     userName_ = userName;
@@ -169,7 +169,7 @@ void AgendaUI::userLogIn(void) {
   } else {
     new_log.setState("fail");
     log_->createElement(new_log);
-    
+
     std::cout << "[error] log in fail!" << std::endl;
   }
 }
@@ -179,10 +179,10 @@ void AgendaUI::userRegister(void) {
   std::cout << "[register] ";
   std::string userName, password, email, phone;
   std::cin >> userName >> password >> email >> phone;
-  
+
   Date current;
   Date::setToCurrentTime(current);
-  LogElement new_log(log_->getSize()+1, current, userName, "register");
+  LogElement new_log(log_->getSize() + 1, current, userName, "register");
 
   if (agendaService_.userRegister(userName, password, email, phone)) {
     new_log.setState("succeed");
@@ -198,8 +198,8 @@ void AgendaUI::userRegister(void) {
 void AgendaUI::quitAgenda(void) {
   Date current;
   Date::setToCurrentTime(current);
-  LogElement new_log(log_->getSize()+1, current, "system",
-      "quit_Agenda", "succeed");
+  LogElement new_log(log_->getSize() + 1, current, "system",
+                     "quit_Agenda", "succeed");
   log_->createElement(new_log);
   log_->sync();
   agendaService_.quitAgenda();
@@ -208,8 +208,8 @@ void AgendaUI::quitAgenda(void) {
 void AgendaUI::userLogOut(void) {
   Date current;
   Date::setToCurrentTime(current);
-  LogElement new_log(log_->getSize()+1, current,
-      userName_, "log_out", "succeed");
+  LogElement new_log(log_->getSize() + 1, current,
+                     userName_, "log_out", "succeed");
   log_->createElement(new_log);
   userName_ = "";
   userPassword_ = "";
@@ -218,8 +218,8 @@ void AgendaUI::userLogOut(void) {
 void AgendaUI::deleteUser(void) {
   Date current;
   Date::setToCurrentTime(current);
-  LogElement new_log(log_->getSize()+1, current,
-      userName_, "delete_account");
+  LogElement new_log(log_->getSize() + 1, current,
+                     userName_, "delete_account");
   if (agendaService_.deleteUser(userName_, userPassword_)) {
     new_log.setState("succeed");
     log_->createElement(new_log);
@@ -240,31 +240,31 @@ void AgendaUI::listAllUsers(void) {
   std::cout << "[list all users]" << std::endl;
   std::cout << std::endl;
   std::cout << std::left << std::setw(8) << "name"
-      << std::setw(20) << "email" << "phone" << std::endl;
+    << std::setw(20) << "email" << "phone" << std::endl;
   for (it = allUserList.begin(); it != allUserList.end(); it++)
     std::cout << std::left << std::setw(8) << it->getName()
-      << std::setw(20) << it->getEmail() << it->getPhone() << std::endl;
+    << std::setw(20) << it->getEmail() << it->getPhone() << std::endl;
 
   Date current;
   Date::setToCurrentTime(current);
-  LogElement new_log(log_->getSize()+1, current,
-      userName_, "list_all_users", "succeed");
+  LogElement new_log(log_->getSize() + 1, current,
+                     userName_, "list_all_users", "succeed");
   log_->createElement(new_log);
 }
 
 void AgendaUI::createMeeting(void) {
   std::cout << std::endl;
   std::cout << "[create meeting] [title] [participator] "
-      << "[start time(yyyy-mm-dd/hh:mm)] [endtime time(yyyy-mm-dd/hh:mm)]"
-      << std::endl;
+    << "[start time(yyyy-mm-dd/hh:mm)] [endtime time(yyyy-mm-dd/hh:mm)]"
+    << std::endl;
   std::cout << "[create meeting] ";
   std::string title, participator, sDate, eDate;
   std::cin >> title >> participator >> sDate >> eDate;
-  
+
   Date current;
   Date::setToCurrentTime(current);
-  LogElement new_log(log_->getSize()+1, current,
-      userName_, "create_meeting");
+  LogElement new_log(log_->getSize() + 1, current,
+                     userName_, "create_meeting");
 
   if (agendaService_.createMeeting(
     userName_, title, participator, sDate, eDate)) {
@@ -286,11 +286,11 @@ void AgendaUI::listAllMeetings(void) {
   std::cout << "[list all meetings]" << std::endl;
   std::cout << std::endl;
   std::cout << std::left << std::setw(8) << "title"
-      << std::setw(10) << "sponsor"
-      << std::setw(14) << "participator"
-      << std::setw(18) << "start time"
-      << std::setw(16) << "end time"
-      << std::endl;
+    << std::setw(10) << "sponsor"
+    << std::setw(14) << "participator"
+    << std::setw(18) << "start time"
+    << std::setw(16) << "end time"
+    << std::endl;
   for (it = allMeetingList.begin(); it != allMeetingList.end(); it++) {
     std::cout << std::left << std::setw(8) << it->getTitle()
       << std::setw(10) << it->getSponsor()
@@ -299,17 +299,17 @@ void AgendaUI::listAllMeetings(void) {
       << std::setw(16) << Date::dateToString(it->getEndDate())
       << std::endl;
   }
-  
+
   Date current;
   Date::setToCurrentTime(current);
-  LogElement new_log(log_->getSize()+1, current,
-      userName_, "list_all_meetings", "succeed");
+  LogElement new_log(log_->getSize() + 1, current,
+                     userName_, "list_all_meetings", "succeed");
   log_->createElement(new_log);
 }
 
 void AgendaUI::listAllSponsorMeetings(void) {
   std::list<Meeting> sponsorMeetingList =
-      agendaService_.listAllSponsorMeetings(userName_);
+    agendaService_.listAllSponsorMeetings(userName_);
   std::list<Meeting>::iterator it;
 
   std::cout << std::endl;
@@ -319,14 +319,14 @@ void AgendaUI::listAllSponsorMeetings(void) {
 
   Date current;
   Date::setToCurrentTime(current);
-  LogElement new_log(log_->getSize()+1, current,
-      userName_, "list_all_sponsor_meetings", "succeed");
+  LogElement new_log(log_->getSize() + 1, current,
+                     userName_, "list_all_sponsor_meetings", "succeed");
   log_->createElement(new_log);
 }
 
-void AgendaUI::listAllParticipateMeetings(void)  {
+void AgendaUI::listAllParticipateMeetings(void) {
   std::list<Meeting> participateMeetingList =
-      agendaService_.listAllParticipateMeetings(userName_);
+    agendaService_.listAllParticipateMeetings(userName_);
 
   std::cout << std::endl;
   std::cout << "[list all paricipate meetings]" << std::endl;
@@ -334,12 +334,12 @@ void AgendaUI::listAllParticipateMeetings(void)  {
 
   Date current;
   Date::setToCurrentTime(current);
-  LogElement new_log(log_->getSize()+1, current,
-      userName_, "list_all_participate_meetings", "succeed");
+  LogElement new_log(log_->getSize() + 1, current,
+                     userName_, "list_all_participate_meetings", "succeed");
   log_->createElement(new_log);
 }
 
-void AgendaUI::queryMeetingByTitle(void)  {
+void AgendaUI::queryMeetingByTitle(void) {
   std::cout << std::endl;
   std::cout << "[query meeting] [title]:" << std::endl;
   std::cout << "[query meeting] ";
@@ -347,22 +347,22 @@ void AgendaUI::queryMeetingByTitle(void)  {
   std::cin >> title;
 
   std::list<Meeting> titleMeetingList =
-      agendaService_.meetingQuery(userName_, title);
+    agendaService_.meetingQuery(userName_, title);
   printMeetings(titleMeetingList);
 
   Date current;
   Date::setToCurrentTime(current);
-  LogElement new_log(log_->getSize()+1, current,
-      userName_, "query_meetings_by_title", "succeed");
+  LogElement new_log(log_->getSize() + 1, current,
+                     userName_, "query_meetings_by_title", "succeed");
   log_->createElement(new_log);
 }
 
 void AgendaUI::queryMeetingByTimeInterval(void) {
   std::cout << std::endl;
   std::cout << "[query meetings] "
-      << "[start time(yyyy-mm-dd/hh:mm)] "
-      << "[end time(yyyy-mm-dd/hh:mm)]"
-      << std::endl;
+    << "[start time(yyyy-mm-dd/hh:mm)] "
+    << "[end time(yyyy-mm-dd/hh:mm)]"
+    << std::endl;
   std::cout << "[query meetings] ";
   std::string sDate, eDate;
   std::cin >> sDate >> eDate;
@@ -373,11 +373,11 @@ void AgendaUI::queryMeetingByTimeInterval(void) {
   std::cout << std::endl;
   std::cout << "[query meetings]";
   printMeetings(timeMeetingList);
-  
+
   Date current;
   Date::setToCurrentTime(current);
-  LogElement new_log(log_->getSize()+1, current,
-      userName_, "query_meetings_by_time", "succeed");
+  LogElement new_log(log_->getSize() + 1, current,
+                     userName_, "query_meetings_by_time", "succeed");
   log_->createElement(new_log);
 }
 
@@ -387,11 +387,11 @@ void AgendaUI::deleteMeetingByTitle(void) {
   std::cout << "[delete meeting] ";
   std::string title;
   std::cin >> title;
-  
+
   Date current;
   Date::setToCurrentTime(current);
-  LogElement new_log(log_->getSize()+1, current,
-      userName_, "delete_meeting_by_title");
+  LogElement new_log(log_->getSize() + 1, current,
+                     userName_, "delete_meeting_by_title");
 
   if (agendaService_.deleteMeeting(userName_, title)) {
     new_log.setState("succeed");
@@ -408,8 +408,8 @@ void AgendaUI::deleteAllMeetings(void) {
 
   Date current;
   Date::setToCurrentTime(current);
-  LogElement new_log(log_->getSize()+1, current,
-      userName_, "delete_sponsored_meetings");
+  LogElement new_log(log_->getSize() + 1, current,
+                     userName_, "delete_sponsored_meetings");
 
   // Actually, the function is to delete all meeting sponsored by the user.
   if (agendaService_.deleteAllMeetings(userName_)) {
@@ -443,4 +443,3 @@ void AgendaUI::printMeetings(std::list<Meeting> meetings) {
       << std::endl;
   }
 }
-
